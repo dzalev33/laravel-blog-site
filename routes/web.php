@@ -1,8 +1,10 @@
 <?php
 
-
+//index
 Route::get('/', 'PostsController@index');
+
+//create
 Route::get('/posts/create', 'PostsController@create');
 
-
-Route::get('/posts/{post}', 'PostsController@show');
+//post
+Route::post('/posts', 'PostsController@store');
