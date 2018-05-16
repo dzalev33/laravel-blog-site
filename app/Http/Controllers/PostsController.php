@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostsController extends Controller
 {
@@ -18,10 +19,15 @@ class PostsController extends Controller
 
     public function index()
     {
+        $filters['month'] = Carbon::now()->month;
+        $filters['year'] = Carbon::now()->year;
+        $posts = Post::latest()
+            ->filter($filters)
+            ->get();
 
-        $posts = Post::latest()->get();
+        $allPosts = Post::archives();
 
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'allPosts'));
     }
 
 

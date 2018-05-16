@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -14,7 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+//        Schema::defaultStringLength(191);
+
+        view()->composer('Layouts.sidebar', function ($view){
+
+            $view->with('archives', \App\Post::archives());
+
+        });
+
     }
 
     /**
