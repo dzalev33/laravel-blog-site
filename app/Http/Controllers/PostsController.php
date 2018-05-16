@@ -19,15 +19,13 @@ class PostsController extends Controller
 
     public function index()
     {
-        $filters['month'] = Carbon::now()->month;
-        $filters['year'] = Carbon::now()->year;
+
         $posts = Post::latest()
-            ->filter($filters)
+            ->filter(request(['month', 'year']))
             ->get();
 
-        $allPosts = Post::archives();
 
-        return view('posts.index', compact('posts', 'allPosts'));
+        return view('posts.index', compact('posts'));
     }
 
 

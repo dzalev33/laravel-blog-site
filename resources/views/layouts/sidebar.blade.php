@@ -8,7 +8,7 @@
                     <h4 class="font-italic">Archives</h4>
                     <ol class="list-unstyled mb-0">
 
-                        @foreach($allPosts as $stats)
+                        @foreach($archives as $stats)
 
                             <li>
                                 <a href="/?month={{$stats['month']}}&year={{ $stats['year'] }}">
